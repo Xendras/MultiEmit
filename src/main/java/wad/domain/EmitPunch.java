@@ -3,13 +3,13 @@ package wad.domain;
 
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class EmitPunch extends AbstractPersistable<Long>{
     
-    @OneToOne
+    @OneToMany
     private Emit emit;
     private String punchCode;
     private Date date;
