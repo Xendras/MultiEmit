@@ -9,7 +9,6 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Competitor extends AbstractPersistable<Long>{
     
     private String name;
-    @OneToOne
     private Emit emit;
     
     public String getName() {

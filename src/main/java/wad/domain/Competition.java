@@ -1,7 +1,11 @@
 package wad.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -13,10 +17,12 @@ public class Competition extends AbstractPersistable<Long> {
     private String location;
     private String name;
     private Date date;
+    @ElementCollection
+    private List<String> controls;
     
     @OneToMany
+    @ElementCollection
     private List<Competitor> competitors;
-    private List<String> controls;
 
     public String getLocation() {
         return this.location;
@@ -43,6 +49,9 @@ public class Competition extends AbstractPersistable<Long> {
     }
     
     public List<Competitor> getCompetitors() {
+        if (this.competitors == null) {
+            this.competitors = new ArrayList<>();
+        }
         return this.competitors;
     }
 

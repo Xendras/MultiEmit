@@ -9,7 +9,6 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class EmitPunch extends AbstractPersistable<Long>{
     
-    @OneToMany
     private Emit emit;
     private String punchCode;
     private Date date;

@@ -1,6 +1,7 @@
 
 package wad.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -11,11 +12,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class Emit extends AbstractPersistable<Long>{
     
-    private String number;
-    
-    @OneToOne
+    private String number;   
     private Competitor owner;
-    
     @OneToMany
     private List<EmitPunch> emitPunches;
     
@@ -36,6 +34,9 @@ public class Emit extends AbstractPersistable<Long>{
     }
     
     public List<EmitPunch> getEmitPunches() {
+        if (this.emitPunches == null) {
+            this.emitPunches = new ArrayList<>();
+        }
         return this.emitPunches;
     }
 
