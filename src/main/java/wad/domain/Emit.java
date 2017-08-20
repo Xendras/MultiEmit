@@ -2,26 +2,31 @@
 package wad.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Emit extends AbstractPersistable<Long>{
     
-    private String number;   
+    @NotBlank
+    @Digits(integer = 6, fraction = 0)
+    private Integer number;   
+    @NotNull
     private Competitor owner;
     @OneToMany
     private List<EmitPunch> emitPunches;
     
-    public String getNumber() {
+    public Integer getInteger() {
         return this.number;
     }
 
-    public void setNumber(String newNumber) {
+    public void setNumber(Integer newNumber) {
         this.number = newNumber;
     }
 

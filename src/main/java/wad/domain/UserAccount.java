@@ -2,13 +2,20 @@
 package wad.domain;
 
 import javax.persistence.Entity;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class UserAccount extends AbstractPersistable<Long>{
     
+    @NotBlank
+    @Length(min = 2, max = 10)
     private String username;
+    @NotBlank
+    @Length(min = 5, max = 21)
     private String password;
+    @NotBlank
     private String authority;
     
     public String getUsername(){

@@ -4,6 +4,32 @@
         <title> Competitions </title>
     </head>
     <body>
-        <h1> Competitions </h1>
+        <h1>Competitions</h1>
+
+        <h2>Add new competition</h2>
+
+        <div>
+            Enter information and press Submit:<br/>
+            <form th:action="@{/competitions}" method="POST">
+                Name: <input type="text" name="name" id="name"/><br/>
+                Location: <input type="text" name="location" id="location"/><br/>
+                Date: <input type="date" name="date" id="date"/><br/>
+                <input type="submit"/>            
+            </form>
+        </div>
+
+        <h2>Current competitions</h2>
+
+        <ol>
+            <li th:each="competition : ${competitions}">
+                <span th:text="${competition.name}">competition name</span>
+                <span th:if="${competition.location} != null">
+                    at <span th:text="${competition.location}">competition location</span>
+                </span>
+                <span th:if="${competition.date} != null">
+                    on the <span th:text="${#dates.format(competition.date, 'yyyy-MM-dd')}">competition date</span>
+                </span>
+            </li>
+        </ol>
     </body>
 </html>

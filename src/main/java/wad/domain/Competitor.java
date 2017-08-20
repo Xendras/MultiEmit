@@ -2,13 +2,16 @@
 package wad.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Competitor extends AbstractPersistable<Long>{
     
+    @NotBlank
     private String name;
+    @NotNull
     private Emit emit;
     
     public String getName() {
