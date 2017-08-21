@@ -13,6 +13,9 @@
             Location: <span th:text="${competition.location}"/><br/>
             Date: <span th:text="${competition.date}"/><br/>      
         </div>
+        <form th:action="@{/competition/{id}(id=${competition.id})}" th:method="DELETE">
+            <input type="submit" value="Remove" th:id="${'remove-' + competition.id"/>
+        </form>
 
         <h2>Competitors</h2>
 

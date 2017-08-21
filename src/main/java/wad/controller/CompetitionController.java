@@ -46,5 +46,11 @@ public class CompetitionController {
         model.addAttribute("competition", competitionService.getCompetition(id));
         return "competition";
     }
+    
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public String deleteCompetition(@PathVariable Long id) {
+        competitionService.deleteCompetition(id);
+        return "redirect:/competition";
+    }
 
 }
