@@ -50,7 +50,7 @@ public class CompetitionController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String deleteCompetition(@PathVariable Long id) {
         competitionService.deleteCompetition(id);
-        return "redirect:/competition";
+        return "redirect:/competitions";
     }
 
 }
