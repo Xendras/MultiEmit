@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${competition.name}"> Competition </title>
+    </head>
+    <body>
+        <h1 th:text="${competition.name}"> competition name </h1>
+
+        <h2>Competition information</h2>
+
+        <div>
+            Name: <span th:text="${competition.name}"/>
+            Location: <span th:text="${competition.location}"/>
+            Date: <span th:text="${competition.date}"/>          
+        </div>
+
+        <h2>Competitors</h2>
+
+        <ol>
+            <li th:each="competitor : ${competition.competitors}">
+                <span th:text="${competitor.name}">competitor name</span>
+                , <span th:text="${competitor.club}">competitor club</span>
+                , <span th:text="${competitor.emit.number}">competitor emit</span>
+            </li>
+        </ol>
+
+        <h2>Results</h2>
+
+        <ol>
+            <li th:each="result : ${competition.results}">
+                <span th:text="${result.competitor.name}">competitor name</span>
+                , <span th:text="${result.competitor.club}">competitor club</span>
+                , <span th:text="${competitor.emit.number}">competitor emit</span>
+                <ul th:each="split : ${result.splits}">
+                    <li><a th:text="${#dates.format(split.timestamp, 'm-s')}"></a></li>
+                </ul>
+            </li>
+        </ol>
+    </body>
+</html>

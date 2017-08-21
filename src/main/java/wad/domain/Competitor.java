@@ -13,6 +13,7 @@ public class Competitor extends AbstractPersistable<Long>{
     private String name;
     @NotNull
     private Emit emit;
+    private String club;
     
     public String getName() {
         return this.name;
@@ -28,6 +29,14 @@ public class Competitor extends AbstractPersistable<Long>{
 
     public void setEmit(Emit newEmit) {
         this.emit = newEmit;
+    }
+    
+    public String getClub() {
+        return this.club;
+    }
+
+    public void setclub(String newClub) {
+        this.club = newClub;
     }
     
 }

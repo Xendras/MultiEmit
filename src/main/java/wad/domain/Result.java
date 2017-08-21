@@ -3,9 +3,12 @@ package wad.domain;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -21,7 +24,11 @@ public class Result extends AbstractPersistable<Long>{
     @NotEmpty
     private List<EmitPunch> splits;
     @NotNull
-    private Time time;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startTime;
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endTime;
     
     public Competitor getCompetitor(){
         return this.competitor;
@@ -50,12 +57,20 @@ public class Result extends AbstractPersistable<Long>{
         this.splits = newSplits;
     }
     
-    public Time getTime(){
-        return this.time;
+    public Date getStartTime(){
+        return this.startTime;
     }
     
-    public void setTime(Time newTime){
-        this.time = newTime;
+    public void setStartTime(Date newStartTime){
+        this.startTime = newStartTime;
+    }
+    
+    public Date getEndTime(){
+        return this.endTime;
+    }
+    
+    public void setEndTime(Date newEndTime){
+        this.endTime = newEndTime;
     }
     
 }

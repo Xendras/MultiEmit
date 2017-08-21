@@ -30,6 +30,10 @@ public class Competition extends AbstractPersistable<Long> {
     @OneToMany
     @ElementCollection
     private List<Competitor> competitors;
+    
+    @OneToMany
+    @ElementCollection
+    private List<Result> results;
 
     public String getLocation() {
         return this.location;
@@ -64,6 +68,17 @@ public class Competition extends AbstractPersistable<Long> {
 
     public void setCompetitors(List<Competitor> newCompetitors) {
         this.competitors = newCompetitors;
+    }
+    
+    public List<Result> getResults() {
+        if (this.results == null) {
+            this.results = new ArrayList<>();
+        }
+        return this.results;
+    }
+
+    public void setResults(List<Result> newResults) {
+        this.results = newResults;
     }
 
 }

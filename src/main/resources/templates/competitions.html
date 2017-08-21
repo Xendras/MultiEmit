@@ -29,6 +29,7 @@
                 <span th:if="${competition.date} != null">
                     on the <span th:text="${#dates.format(competition.date, 'yyyy-MM-dd')}">competition date</span>
                 </span>
+                <a th:href="@{/competitions/{competitionId}(competitionId=${competition.id})}" th:text="View">View competition</a>
             </li>
         </ol>
     </body>

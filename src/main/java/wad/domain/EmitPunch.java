@@ -18,7 +18,7 @@ public class EmitPunch extends AbstractPersistable<Long>{
     private String punchCode;
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date timestamp;
     
     public Emit getEmit(){
         return this.emit;
@@ -36,12 +36,12 @@ public class EmitPunch extends AbstractPersistable<Long>{
         this.punchCode = newCode;
     }
     
-    public Date getDate(){
-        return this.date;
+    public Date getTimestamp(){
+        return this.timestamp;
     }
     
-    public void setDate(Date newDate){
-        this.date = newDate;
+    public void setTimestamp(Date newTimestamp){
+        this.timestamp = newTimestamp;
     }
     
 }
