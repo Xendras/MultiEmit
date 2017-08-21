@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
     <head>
         <title th:text="${competition.name}"> Competition </title>
     </head>
@@ -9,9 +9,9 @@
         <h2>Competition information</h2>
 
         <div>
-            Name: <span th:text="${competition.name}"/>
-            Location: <span th:text="${competition.location}"/>
-            Date: <span th:text="${competition.date}"/>          
+            Name: <span th:text="${competition.name}"/><br/>
+            Location: <span th:text="${competition.location}"/><br/>
+            Date: <span th:text="${competition.date}"/><br/>      
         </div>
 
         <h2>Competitors</h2>

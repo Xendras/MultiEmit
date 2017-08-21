@@ -21,6 +21,7 @@ public class Competition extends AbstractPersistable<Long> {
     @NotBlank
     private String name;
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date date;
     

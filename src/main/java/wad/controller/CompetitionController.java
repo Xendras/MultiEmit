@@ -1,46 +1,50 @@
-
 package wad.controller;
 
-import java.util.Date;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import wad.domain.Competition;
 import wad.repository.CompetitionRepository;
+import wad.service.CompetitionService;
 
 @Controller
 @RequestMapping("/competitions")
 public class CompetitionController {
     
     @Autowired
-    private CompetitionRepository competitionRepository;
+    private CompetitionService competitionService;
     
+    @ModelAttribute
+    private Competition getCompetition() {
+        return new Competition();
+    }
+
     @RequestMapping(method = RequestMethod.GET)
-    public String viewCompetitions(Model model){
-        model.addAttribute("competitions", competitionRepository.findAll());
+    public String viewCompetitions(Model model) {
+        model.addAttribute("competitions", competitionService.getCompetitions());
         return "competitions";
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String addCompetition(@Valid @RequestParam String name, @Valid @RequestParam String location, @Valid @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date){
-        Competition competition = new Competition();
-        competition.setName(name);
-        competition.setLocation(location);
-        competition.setDate(date);
-        competitionRepository.save(competition);
+    public String addCompetition(@Valid @ModelAttribute("competition") Competition competition, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()){
+            viewCompetitions(model);
+            return "competitions";
+        }
+        competitionService.saveCompetition(competition);
         return "redirect:/competitions";
     }
-    
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String viewCompetition(@PathVariable Long id, Model model){
-        model.addAttribute("competition", competitionRepository.findOne(id));
+    public String viewCompetition(@PathVariable Long id, Model model) {
+        model.addAttribute("competition", competitionService.getCompetition(id));
         return "competition";
     }
-    
+
 }
