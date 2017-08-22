@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class DefaultController {
 
-    @RequestMapping("*")
+    @RequestMapping("/")
     public String handleDefault() {
         return "redirect:/index";
     }

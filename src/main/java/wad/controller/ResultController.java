@@ -30,13 +30,6 @@ public class ResultController {
         return new Result();
     }
     
-    @RequestMapping(method = RequestMethod.GET)
-    public String viewResults(Model model, @PathVariable Long id){
-        Competition competition = competitionRepository.findOne(id);
-        model.addAttribute("results",competition.getResults());
-        return "competition";
-    }
-    
     @RequestMapping(method = RequestMethod.POST)
     public String addResults(@PathVariable Long id, @RequestParam Competition competition){
         return "competition";

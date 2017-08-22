@@ -42,8 +42,10 @@ public class CompetitionController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String viewCompetition(@PathVariable Long id, Model model) {
-        model.addAttribute("competition", competitionService.getCompetition(id));
+    public String viewCompetitionAndResults(@PathVariable Long id, Model model) {
+        Competition competition = competitionService.getCompetition(id);
+        model.addAttribute("results", competition.getResults());
+        model.addAttribute("competition", competition);
         return "competition";
     }
     
